@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package user_service;
+
+message Empty {}
+
+message FindOneUserDto {
+  string id = 1;
+}
+
+message UpdateUserDto {
+  string id = 1;
+}
+
+message CreateUserDto {
+  string username = 1;
+  string password = 2;
+  string fullName = 3;
+}
+
+message SignInDto {
+  string username = 1;
+  string password = 2;
+}
+
+message User {
+  string id = 1;
+  string username = 2;
+  string password = 3;
+  string fullName = 4;
+}
+
+message Users {
+  repeated User users = 1;
+}
+
+message SignInResponse {
+  User user = 1;
+  string access_token = 2;
+  string expires_in = 3;
+}
+
+message Order {
+  string id = 1;
+  string userId = 2;
+  string productId = 3;
+  int32 quantity = 4;
+  double totalPrice = 5;
+}
+
+message Orders {
+  repeated Order orders = 1;
+}
+
+service UserService {
+  rpc CreateUser (CreateUserDto) returns (User) {}
+  rpc SignIn (SignInDto) returns (SignInResponse) {}
+  rpc ListUserOrders (FindOneUserDto) returns (Orders) {}
+}
