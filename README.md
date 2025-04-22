@@ -1,156 +1,165 @@
+# 🛒 NestJS E-Commerce Microservices
 
-🛒 NestJS E-Commerce Microservices
-A modular, scalable e-commerce backend built with NestJS, leveraging microservices architecture. This project utilizes gRPC for inter-service communication, PostgreSQL for data persistence, and Docker for containerization.
+A modular, scalable e-commerce backend built with NestJS, leveraging microservices architecture. This project uses gRPC for inter-service communication, PostgreSQL for persistence, and Docker for containerization.
 
-📦 Features
-Microservices Architecture: Decoupled services for user management, product catalog, order processing, and API gateway.
+---
 
-gRPC Communication: Efficient inter-service communication using Protocol Buffers.
+## 📦 Features
 
-PostgreSQL Integration: Robust relational database support.
+- **Microservices Architecture** – Decoupled services for user, product, order, and gateway
+- **gRPC Communication** – Efficient service-to-service communication using Protocol Buffers
+- **PostgreSQL Integration** – Reliable relational database support
+- **Dockerized Environment** – Consistent development & deployment
+- **Scalable & Modular Design** – Easily extendable
 
-Dockerized Environment: Containerized services for consistent development and deployment.
+---
 
-TypeScript Support: Type-safe codebase for better maintainability.
+## 🏗️ Project Structure
 
-Scalable Design: Easily extendable to accommodate additional services or features.​
-GitHub
-+2
-GitHub
-+2
-GitHub
-+2
-
-🏗️ Project Structure
-bash
-Copy
-Edit
+```
 nest-ecom-micro-service/
 ├── apps/
-│   ├── apigetway/          # API Gateway handling client requests
-│   ├── user_service/       # User management microservice
-│   ├── product_service/    # Product catalog microservice
-│   └── order_service/      # Order processing microservice
+│   ├── apigetway/          # API Gateway
+│   ├── user_service/       # User microservice
+│   ├── product_service/    # Product microservice
+│   └── order_service/      # Order microservice
 ├── libs/
-│   └── shared/             # Shared modules and utilities
-├── proto/                  # Protocol Buffer definitions
-├── docker-compose.yml      # Docker Compose configuration
-├── package.json            # Project metadata and scripts
-└── README.md               # Project documentation
-🚀 Getting Started
-Prerequisites
-Node.js (v16 or later)
+│   └── shared/             # Shared modules/utilities
+├── proto/                  # Protocol Buffer files
+├── docker-compose.yml      # Docker config
+├── package.json
+└── README.md
+```
 
-NestJS CLI
+---
 
-Docker & Docker Compose
+## 🚀 Getting Started
 
-PostgreSQL​
+### Prerequisites
 
-Installation
-Clone the repository:
+- [Node.js](https://nodejs.org/) (v16+)
+- [NestJS CLI](https://docs.nestjs.com/cli/overview)
+- [Docker](https://www.docker.com/)
+- [PostgreSQL](https://www.postgresql.org/)
 
-bash
-Copy
-Edit
+### Installation
+
+1. **Clone the repo**
+
+```bash
 git clone https://github.com/Asrat001/nest-ecom-micro-service.git
 cd nest-ecom-micro-service
-Install dependencies:
+```
 
-bash
-Copy
-Edit
-npm install
-Set up environment variables:
+2. **Install dependencies**
 
-Copy the example environment file:​
+```bash
+npm install 
+```
+in some case use 
+```bash
+npm install  --force
+```
 
-bash
-Copy
-Edit
+3. **Set up environment variables**
+
+```bash
 cp .env.example .env
-Update .env with your configuration.​
+# Edit .env with your local DB and gRPC URLs
+```
 
-Generate Protocol Buffers:
+4. **Generate Protocol Buffers**
 
-bash
-Copy
-Edit
-npm run proto:gen
-Build the project:
+```bash
+npx protoc --plugin=protoc-gen-ts_proto=./node_modules/.bin/protoc-gen-ts_proto   --ts_proto_out=./   --ts_proto_opt=nestJs=true   ./proto/user-service.proto
+npx protoc --plugin=protoc-gen-ts_proto=./node_modules/.bin/protoc-gen-ts_proto   --ts_proto_out=./   --ts_proto_opt=nestJs=true   ./proto/order-service.proto
+npx protoc --plugin=protoc-gen-ts_proto=./node_modules/.bin/protoc-gen-ts_proto   --ts_proto_out=./   --ts_proto_opt=nestJs=true   ./proto/product-service.proto
+```
 
-bash
-Copy
-Edit
+5. **Build the project**
+
+```bash
 npm run build
-Start services:
+```
 
-For development:​
+6. **Start services**
 
-bash
-Copy
-Edit
-npm run start:dev
-For production:​
-GitHub
-+3
-GitHub
-+3
-GitHub
-+3
+- For development:
 
-bash
-Copy
-Edit
+```bash
+npm run start:dev apigetway
+npm run start:dev user_service
+npm run start:dev product_service
+npm run start:dev order_service
+```
+
+- For production:
+
+```bash
 npm run start:prod
-🐳 Docker Deployment
-To run the entire application stack using Docker:
+```
 
-Build and start containers:
+---
 
-bash
-Copy
-Edit
+## 🐳 Docker
+
+Start the app using Docker:
+
+```bash
 docker-compose up --build
-Access the API Gateway:
+```
 
-Navigate to http://localhost:3000 in your browser.​
+Access the API gateway at:  
+**http://localhost:3000**
 
-📄 API Documentation
-The API Gateway integrates Swagger for API documentation. Once the application is running, access the docs at:​
-GitHub
+---
 
-bash
-Copy
-Edit
-http://localhost:3000/api
-🧪 Testing
-To run tests for individual services:​
+## 📄 API Documentation
 
-bash
-Copy
-Edit
-# Navigate to the service directory
+Once running, visit:
+
+```
+http://localhost:3000/docs
+```
+
+Swagger will list available routes from the gateway.
+
+---
+
+## 🧪 Testing
+
+To run tests inside any microservice:
+
+```bash
+# Example for user service
 cd apps/user_service
-
-# Run tests
 npm run test
-Repeat the above steps for other services (product_service, order_service, etc.).​
+```
 
-📁 Environment Variables
-Ensure the following environment variables are set in your .env file:​
 
-env
-Copy
-Edit
+---
+
+## 📁 Environment Variables
+
+Example `.env`:
+
+```env
 # PostgreSQL
 DB_HOST=localhost
 DB_PORT=5432
-DB_USER=your_db_user
-DB_PASSWORD=your_db_password
-DB_NAME=your_db_name
+DB_USER=youruser
+DB_PASSWORD=yourpass
+DB_NAME=ecom
 
 # gRPC
 USER_SERVICE_URL=localhost:5001
 PRODUCT_SERVICE_URL=localhost:5002
 ORDER_SERVICE_URL=localhost:5003
+```
+
+---
+
+## Things I Did't Complete
+using Nx
+
+
