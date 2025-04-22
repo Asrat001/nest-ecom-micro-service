@@ -1,99 +1,156 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+🛒 NestJS E-Commerce Microservices
+A modular, scalable e-commerce backend built with NestJS, leveraging microservices architecture. This project utilizes gRPC for inter-service communication, PostgreSQL for data persistence, and Docker for containerization.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+📦 Features
+Microservices Architecture: Decoupled services for user management, product catalog, order processing, and API gateway.
 
-## Description
+gRPC Communication: Efficient inter-service communication using Protocol Buffers.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+PostgreSQL Integration: Robust relational database support.
 
-## Project setup
+Dockerized Environment: Containerized services for consistent development and deployment.
 
-```bash
-$ npm install
-```
+TypeScript Support: Type-safe codebase for better maintainability.
 
-## Compile and run the project
+Scalable Design: Easily extendable to accommodate additional services or features.​
+GitHub
++2
+GitHub
++2
+GitHub
++2
 
-```bash
-# development
-$ npm run start
+🏗️ Project Structure
+bash
+Copy
+Edit
+nest-ecom-micro-service/
+├── apps/
+│   ├── apigetway/          # API Gateway handling client requests
+│   ├── user_service/       # User management microservice
+│   ├── product_service/    # Product catalog microservice
+│   └── order_service/      # Order processing microservice
+├── libs/
+│   └── shared/             # Shared modules and utilities
+├── proto/                  # Protocol Buffer definitions
+├── docker-compose.yml      # Docker Compose configuration
+├── package.json            # Project metadata and scripts
+└── README.md               # Project documentation
+🚀 Getting Started
+Prerequisites
+Node.js (v16 or later)
 
-# watch mode
-$ npm run start:dev
+NestJS CLI
 
-# production mode
-$ npm run start:prod
-```
+Docker & Docker Compose
 
-## Run tests
+PostgreSQL​
 
-```bash
-# unit tests
-$ npm run test
+Installation
+Clone the repository:
 
-# e2e tests
-$ npm run test:e2e
+bash
+Copy
+Edit
+git clone https://github.com/Asrat001/nest-ecom-micro-service.git
+cd nest-ecom-micro-service
+Install dependencies:
 
-# test coverage
-$ npm run test:cov
-```
+bash
+Copy
+Edit
+npm install
+Set up environment variables:
 
-## Deployment
+Copy the example environment file:​
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+bash
+Copy
+Edit
+cp .env.example .env
+Update .env with your configuration.​
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Generate Protocol Buffers:
 
-```bash
-$ npm install -g mau
-$ mau deploy
-```
+bash
+Copy
+Edit
+npm run proto:gen
+Build the project:
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+bash
+Copy
+Edit
+npm run build
+Start services:
 
-## Resources
+For development:​
 
-Check out a few resources that may come in handy when working with NestJS:
+bash
+Copy
+Edit
+npm run start:dev
+For production:​
+GitHub
++3
+GitHub
++3
+GitHub
++3
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+bash
+Copy
+Edit
+npm run start:prod
+🐳 Docker Deployment
+To run the entire application stack using Docker:
 
-## Support
+Build and start containers:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+bash
+Copy
+Edit
+docker-compose up --build
+Access the API Gateway:
 
-## Stay in touch
+Navigate to http://localhost:3000 in your browser.​
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+📄 API Documentation
+The API Gateway integrates Swagger for API documentation. Once the application is running, access the docs at:​
+GitHub
 
-## License
+bash
+Copy
+Edit
+http://localhost:3000/api
+🧪 Testing
+To run tests for individual services:​
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+bash
+Copy
+Edit
+# Navigate to the service directory
+cd apps/user_service
+
+# Run tests
+npm run test
+Repeat the above steps for other services (product_service, order_service, etc.).​
+
+📁 Environment Variables
+Ensure the following environment variables are set in your .env file:​
+
+env
+Copy
+Edit
+# PostgreSQL
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+DB_NAME=your_db_name
+
+# gRPC
+USER_SERVICE_URL=localhost:5001
+PRODUCT_SERVICE_URL=localhost:5002
+ORDER_SERVICE_URL=localhost:5003
