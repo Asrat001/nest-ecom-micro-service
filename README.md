@@ -14,7 +14,7 @@ A modular, scalable e-commerce backend built with NestJS, leveraging microservic
 
 ---
 
-![Swagger ScreenShoot](docs/img.png)
+![Swagger ScreenShoot](img/img.png)
 
 ## 🏗️ Project Structure
 
